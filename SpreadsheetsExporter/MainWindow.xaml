@@ -1,0 +1,52 @@
+﻿<Window x:Class="SpreadsheetsExporter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gds="clr-namespace:Google.GData.Spreadsheets;assembly=Google.GData.Spreadsheets"
+        xmlns:se="clr-namespace:SpreadsheetsExporter"
+        Title="MainWindow" Height="395" Width="658">
+    <Window.Resources>
+        <Style x:Key="btnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+        </Style>
+        <DataTemplate DataType="{x:Type gds:SpreadsheetEntry}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Title.Text}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type gds:WorksheetEntry }">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Title.Text}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type se:WriterInfo }">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding WriterName}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Margin="0,0,2,0">
+
+
+        <StackPanel x:Name="connectionStackPanel" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="486" Orientation="Horizontal">
+            <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Width="160" Click="Button_Click"/>
+            <TextBox x:Name="authCode" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="Enter your authorization code" Width="220" GotKeyboardFocus="authCode_GotFocus" GotMouseCapture="authCode_GotFocus" Margin="10,0,0,0"/>
+            <Button x:Name="goButton" Content="Go" HorizontalAlignment="Left" Width="82" Click="goButton_Click" Margin="10,0,0,0"/>
+        </StackPanel>
+        <StackPanel x:Name="spreadsheetsStackPanel" HorizontalAlignment="Left" Height="344" Margin="10,10,0,0" VerticalAlignment="Top" Width="628">
+            <ListBox x:Name="spreadsheetsList" HorizontalAlignment="Left" Width="628" Height="304">
+            </ListBox>
+            <StackPanel Height="35" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style BasedOn="{StaticResource btnStyle}" TargetType="{x:Type Button}" />
+                </StackPanel.Resources>
+                <Button x:Name="reloadSpreadsheetsButton" Content="Reload Spreadsheets" Click="reloadSpreadsheetsButton_Click"/>
+                <Button x:Name="selectSpreadsheetButton" Content="Select Spreadsheet" Click="selectSpreadsheetButton_Click" IsEnabled="False"/>
+                <Button x:Name="useWorksheetButton" Content="Use Worksheet" IsEnabled="False" Click="useWorksheetButton_Click"/>
+                <Button x:Name="useWriterButton" Content="Use Schema" IsEnabled="False" Click="useWriterButton_Click"/>
+
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
