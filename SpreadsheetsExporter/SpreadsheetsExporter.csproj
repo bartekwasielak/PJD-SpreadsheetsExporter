@@ -74,6 +74,7 @@
     <Compile Include="WorksheetValues.cs" />
     <Compile Include="Writer.cs" />
     <Compile Include="WriterInfo.cs" />
+    <Compile Include="Writers\EwidencjaOZ.cs" />
     <Compile Include="Writers\Przychody.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

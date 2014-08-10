@@ -13,7 +13,8 @@ namespace SpreadsheetsExporter
         public SimpleWritersProvider()
         {
             _writers = new List<Writer> {
-               new Writers.Przychody()
+               new Writers.Przychody(),
+               new Writers.EwidencjaOZ()
             };
         }
 
